@@ -1,5 +1,25 @@
+import { useState } from 'react';
+import GridNews from 'components/GridNews';
+import Categories from 'components/Categories';
+import { Filters } from './Home.styled';
+
 const Home = () => {
-  return <p>Home</p>;
+  const [nameCategory, setNameCategiry] = useState('');
+
+  const handlerClickCategory = event => {
+    setNameCategiry(event.target.name);
+  };
+
+  return (
+    <>
+      <Filters>
+        <Categories handlerClickCategory={handlerClickCategory} />
+        <p>Search date news</p>
+      </Filters>
+      const [nameCategory, setNameCategiry] = useState('');
+      <GridNews nameCategory={nameCategory} />
+    </>
+  );
 };
 
 export default Home;

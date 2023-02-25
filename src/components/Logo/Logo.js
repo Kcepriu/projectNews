@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom';
+import { WrapLogo, LinkLogo } from './Logo.styled';
 
 const Logo = () => {
-  return <Link to="/">News</Link>;
+  return (
+    <WrapLogo>
+      <LinkLogo to="/">News</LinkLogo>
+    </WrapLogo>
+  );
 };
 
 export default Logo;

@@ -1,5 +1,5 @@
 const Switch = () => {
-  return <p>Switch</p>;
+  return <p>Switch theme</p>;
 };
 
 export default Switch;

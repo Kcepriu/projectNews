@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
-export const HeaderPage = styled.header`
+export const Filters = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 16px;
+
+  padding-top: 30px;
+  padding-bottom: 60px;
 `;
