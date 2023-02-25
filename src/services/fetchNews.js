@@ -24,5 +24,110 @@ export async function fetchCategory(controller) {
   return result;
 }
 
+export async function fetchPopularNews(controller) {
+  const result = await axios.get('mostpopular/v2/viewed/1.json', {
+    ...configAnswer,
+    signal: controller.signal,
+  });
+
+  return result;
+}
+
+export async function fetchNewsCategory(nameCategory, controller) {
+  const result = await axios.get(`news/v3/content/all/${nameCategory}.json`, {
+    ...configAnswer,
+    signal: controller.signal,
+  });
+
+  return result;
+}
+
+export async function fetchArticles({ nameCategory, filter, controller }) {
+  let normalazeNews = [];
+
+  if (nameCategory) {
+    const resultQuery = await fetchNewsCategory(nameCategory, controller);
+    const informations = resultQuery.data.results;
+
+    normalazeNews = informations.map((element, index) =>
+      normalizeFromCategory(element, index)
+    );
+  } else {
+    const resultQuery = await fetchPopularNews(controller);
+    const informations = resultQuery.data.results;
+
+    normalazeNews = informations.map((element, index) =>
+      normalizeFromPopular(element)
+    );
+  }
+  return normalazeNews;
+}
+
+// * Category
+function normalizeFromCategory(news, number) {
+  const {
+    slug_name,
+    url,
+    section,
+    published_date,
+    title,
+    abstract,
+    multimedia,
+  } = news;
+
+  //TODO - Зробити зображення
+  return {
+    id: slug_name + number,
+    url,
+    section,
+    published_date,
+    title,
+    abstract,
+    images: getImageInformationFromCategory(multimedia),
+  };
+}
+
+function getImageInformationFromCategory(medias) {
+  const resultObj = {};
+
+  medias.map(element => {
+    if (element.type === 'image') {
+      resultObj[element.width] = element.url;
+    }
+  });
+
+  return resultObj;
+}
+
+// * Popular
+function normalizeFromPopular(news) {
+  const { id, url, section, published_date, title, abstract, media } = news;
+
+  //TODO - Зробити зображення
+  return {
+    id,
+    url,
+    section,
+    published_date,
+    title,
+    abstract,
+    images: getImageInformationFromPopular(media),
+  };
+}
+
+function getImageInformationFromPopular(medias) {
+  const resultObj = {};
+
+  medias.forEach(madiaElement => {
+    if (madiaElement.type === 'image') {
+      madiaElement['media-metadata'].map(
+        element => (resultObj[element.width] = element.url)
+      );
+    }
+  });
+
+  return resultObj;
+}
+
 // {section: 'automobiles', display_name: 'Automobiles'}
 // {section: 'books', display_name: 'Books'}

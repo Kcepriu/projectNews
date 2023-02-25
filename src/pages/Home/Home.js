@@ -16,7 +16,6 @@ const Home = () => {
         <Categories handlerClickCategory={handlerClickCategory} />
         <p>Search date news</p>
       </Filters>
-      const [nameCategory, setNameCategiry] = useState('');
       <GridNews nameCategory={nameCategory} />
     </>
   );
