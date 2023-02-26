@@ -1,49 +1,33 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { fetchArticles } from 'services/fetchNews';
+import { GridCards, ItemGrid } from './GridNews.styled';
+import CardNew from 'components/CardNew/CardNew';
 
-const GridNews = ({ nameCategory }) => {
-  //!  Винести в пропси
-  const filter = '';
-
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function startFetchArticles() {
-      try {
-        const results = await fetchArticles({
-          nameCategory,
-          filter,
-          controller,
-        });
-
-        console.log('fetchArticles', results);
-      } catch (Error) {
-        console.log('Error fetch articles');
-      }
-    }
-
-    startFetchArticles();
-
-    return () => {
-      controller.abort();
-    };
-  }, [nameCategory]);
-
+const GridNews = ({ articles }) => {
   return (
-    <>
-      <p>GridNews</p>
-      {articles.map((element, index) => {
-        return <p>{index}</p>;
+    <GridCards>
+      {articles.map((article, index) => {
+        return (
+          <ItemGrid key={article.id}>
+            <CardNew article={article} />
+          </ItemGrid>
+        );
       })}
-    </>
+    </GridCards>
   );
 };
 
 GridNews.propTypes = {
-  nameCategory: PropTypes.string.isRequired,
+  articles: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      abstract: PropTypes.string.isRequired,
+      published_date: PropTypes.string.isRequired,
+      section: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+      images: PropTypes.object,
+    }).isRequired
+  ).isRequired,
 };
 
 export default GridNews;

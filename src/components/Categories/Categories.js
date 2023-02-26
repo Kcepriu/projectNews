@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import CategoriesMenu from 'components/CategoriesMenu';
-import CategoriesRow from 'components/CategoriesRow';
+// import FilterMenu from 'components/FilterMenu/FilterMenu';
+import FilterRow from 'components/FilterRow/FilterRow';
+
 import { fetchCategory } from 'services/fetchNews';
 import { WrapCategories } from './Categories.styled';
 import ButtonCategorie from 'components/ButtonCategorie';
@@ -43,7 +44,7 @@ const Categories = ({ handlerClickCategory }) => {
     <>
       <WrapCategories>
         {catagoriesRow.length > 0 && (
-          <CategoriesRow
+          <FilterRow
             categories={catagoriesRow}
             handlerClickCategory={handlerClickCategory}
           />
@@ -57,7 +58,7 @@ const Categories = ({ handlerClickCategory }) => {
           </ButtonCategorie>
         )}
       </WrapCategories>
-      {/* {showOhterCategories && <CategoriesMenu catagories={catagoriesMenu} />} */}
+      {/* {showOhterCategories && <FilterMenu catagories={catagoriesMenu} />} */}
     </>
   );
 };

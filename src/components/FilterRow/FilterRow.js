@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import ButtonCategorie from 'components/ButtonCategorie';
-import { WrapCategories } from './CategoriesRow.styled';
+import { WrapCategories } from './FilterRow.styled';
 
-const CategoriesRow = ({ categories, handlerClickCategory }) => {
+const FilterRow = ({ categories, handlerClickCategory }) => {
   return (
     <WrapCategories>
       {categories.map(({ section, display_name }) => {
@@ -20,7 +20,7 @@ const CategoriesRow = ({ categories, handlerClickCategory }) => {
 
 // {section: 'arts', display_name: 'Arts'}
 
-CategoriesRow.propTypes = {
+FilterRow.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.exact({
       section: PropTypes.string.isRequired,
@@ -30,4 +30,4 @@ CategoriesRow.propTypes = {
   handlerClickCategory: PropTypes.func.isRequired,
 };
 
-export default CategoriesRow;
+export default FilterRow;

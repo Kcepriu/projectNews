@@ -6,7 +6,7 @@ const configAnswer = {
   baseURL: URL,
   header: {},
   params: {
-    ['api-key']: KEY,
+    'api-key': KEY,
   },
 };
 
@@ -54,6 +54,7 @@ export async function fetchArticles({ nameCategory, filter, controller }) {
     );
   } else {
     const resultQuery = await fetchPopularNews(controller);
+
     const informations = resultQuery.data.results;
 
     normalazeNews = informations.map((element, index) =>
@@ -89,11 +90,13 @@ function normalizeFromCategory(news, number) {
 
 function getImageInformationFromCategory(medias) {
   const resultObj = {};
+  if (!medias) return resultObj;
 
   medias.map(element => {
     if (element.type === 'image') {
       resultObj[element.width] = element.url;
     }
+    return element;
   });
 
   return resultObj;
@@ -105,7 +108,7 @@ function normalizeFromPopular(news) {
 
   //TODO - Зробити зображення
   return {
-    id,
+    id: id.toString(),
     url,
     section,
     published_date,

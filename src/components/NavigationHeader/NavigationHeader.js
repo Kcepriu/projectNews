@@ -1,10 +1,14 @@
+import { useLocation } from 'react-router-dom';
 import { Nav, Link } from './NavigationHeader.styled';
 
 const NavigationHeader = () => {
+  const { pathname } = useLocation();
+  const className = pathname.includes('/new') ? 'active' : '';
+
   return (
     <Nav>
       <li>
-        <Link to="/" end>
+        <Link to="/" end className={className}>
           Home
         </Link>
       </li>

@@ -1,24 +1,11 @@
-import { useState } from 'react';
-import GridNews from 'components/GridNews';
-import Categories from 'components/Categories';
-import { Filters } from './Home.styled';
+import GridNews from 'components/GridNews/GridNews';
+import Loader from 'components/Loader/Loader';
+import useFetchArticles from 'hooks/useFetchArticles';
 
 const Home = () => {
-  const [nameCategory, setNameCategiry] = useState('');
+  const [isLoader, articles] = useFetchArticles();
 
-  const handlerClickCategory = event => {
-    setNameCategiry(event.target.name);
-  };
-
-  return (
-    <>
-      <Filters>
-        <Categories handlerClickCategory={handlerClickCategory} />
-        <p>Search date news</p>
-      </Filters>
-      <GridNews nameCategory={nameCategory} />
-    </>
-  );
+  return <>{isLoader ? <Loader /> : <GridNews articles={articles} />}</>;
 };
 
 export default Home;

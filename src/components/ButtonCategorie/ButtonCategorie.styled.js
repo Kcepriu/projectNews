@@ -19,4 +19,9 @@ export const Button = styled.button`
     background: #4440f6;
     color: #ffffff;
   }
+
+  &.Active {
+    background: #4440f6;
+    color: #ffffff;
+  }
 `;
