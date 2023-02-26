@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import Categories from 'components/Categories';
+import Categories from 'components/Categories/Categories';
 import { Filters } from './FilterLayout.styled';
 
 const FilterLayout = () => {

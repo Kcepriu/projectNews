@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import SharedLayout from './layout/SharedLayout/SharedLayout';
+import SharedLayout from '../layout/SharedLayout/SharedLayout';
 import Page404 from 'pages/Page404';
 import Home from 'pages/Home';
 import Favorite from 'pages/Favorite';
 import Read from 'pages/Read';
-import FilterLayout from './layout/FilterLayout/FilterLayout';
+import FilterLayout from '../layout/FilterLayout/FilterLayout';
 
 export const App = () => {
   return (

@@ -72,3 +72,13 @@ export const ContentNew = styled.div`
   font-size: 16px;
   line-height: 22px;
 `;
+
+export const DatePublication = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #a8a8a8;
+`;

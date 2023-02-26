@@ -1,8 +1,9 @@
-import Logo from 'components/Logo';
-import NavigationHeader from 'components/NavigationHeader';
-import SearchHeader from 'components/SearchHeader';
-import SwitchTheme from 'components/SwitchTheme';
+import Logo from 'components/Logo/Logo';
+import NavigationHeader from 'components/NavigationHeader/NavigationHeader';
+import SearchHeader from 'components/SearchHeader/SearchHeader';
+import SwitchTheme from 'components/SwitchTheme/SwitchTheme';
 import { HeaderPage } from './Header.styled';
+
 const Header = () => {
   return (
     <HeaderPage>

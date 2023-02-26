@@ -1,17 +1,41 @@
 import PropTypes from 'prop-types';
 import { GridCards, ItemGrid } from './GridNews.styled';
 import CardNew from 'components/CardNew/CardNew';
+import { useEffect, useState } from 'react';
 
-const GridNews = ({ articles }) => {
+const GridNews = ({ articles, otherCards = {} }) => {
+  const [newArticles, setNewArticles] = useState();
+
+  useEffect(() => {
+    const changeArticles = articles.map((article, index) => {
+      return (
+        <ItemGrid key={article.id}>
+          <CardNew article={article} />
+        </ItemGrid>
+      );
+    });
+
+    for (const key in otherCards) {
+      changeArticles.splice(
+        key - 1,
+        0,
+        <ItemGrid key={key}>{otherCards[key]}</ItemGrid>
+      );
+    }
+
+    setNewArticles(changeArticles);
+  }, [articles, otherCards]);
+
   return (
     <GridCards>
-      {articles.map((article, index) => {
+      {newArticles}
+      {/* {articles.map((article, index) => {
         return (
           <ItemGrid key={article.id}>
             <CardNew article={article} />
           </ItemGrid>
         );
-      })}
+      })} */}
     </GridCards>
   );
 };
@@ -28,6 +52,7 @@ GridNews.propTypes = {
       images: PropTypes.object,
     }).isRequired
   ).isRequired,
+  otherCards: PropTypes.object,
 };
 
 export default GridNews;

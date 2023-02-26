@@ -5,7 +5,17 @@ import useFetchArticles from 'hooks/useFetchArticles';
 const Home = () => {
   const [isLoader, articles] = useFetchArticles();
 
-  return <>{isLoader ? <Loader /> : <GridNews articles={articles} />}</>;
+  const otherCards = { 3: <p>Test</p> };
+
+  return (
+    <>
+      {isLoader ? (
+        <Loader />
+      ) : (
+        <GridNews articles={articles} otherCards={otherCards} />
+      )}
+    </>
+  );
 };
 
 export default Home;

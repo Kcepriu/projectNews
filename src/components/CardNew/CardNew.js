@@ -9,6 +9,7 @@ import {
   Section,
   Title,
   ContentNew,
+  DatePublication,
 } from './CardNew.styled';
 
 const CardNew = ({ article }) => {
@@ -24,8 +25,10 @@ const CardNew = ({ article }) => {
 
         <Section>{section}</Section>
         <FooterCard>
-          <p>{formatDate(published_date)}</p>
-          <Link to={url}>Read more</Link>
+          <DatePublication>{formatDate(published_date)}</DatePublication>
+          <Link target="_blank" to={url}>
+            Read more
+          </Link>
         </FooterCard>
       </WrapContent>
     </Card>

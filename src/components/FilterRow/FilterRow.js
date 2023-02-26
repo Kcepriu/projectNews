@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ButtonCategorie from 'components/ButtonCategorie';
+import ButtonCategorie from 'components/ButtonCategorie/ButtonCategorie';
 import { WrapCategories } from './FilterRow.styled';
 
 const FilterRow = ({ categories, handlerClickCategory }) => {
