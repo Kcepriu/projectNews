@@ -5,10 +5,11 @@ import Home from 'pages/Home';
 import Favorite from 'pages/Favorite';
 import Read from 'pages/Read';
 import FilterLayout from '../layout/FilterLayout/FilterLayout';
+import { ContextUseStorage } from './ContextUseStorage/ContextUseStorage';
 
 export const App = () => {
   return (
-    <>
+    <ContextUseStorage>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route element={<FilterLayout />}>
@@ -23,6 +24,6 @@ export const App = () => {
 
         <Route path="*" elemet={<Page404 />} />
       </Routes>
-    </>
+    </ContextUseStorage>
   );
 };
