@@ -12,6 +12,7 @@ export const loadFromStorage = key => {
     const serializedState = localStorage.getItem(key);
     return serializedState === null ? undefined : JSON.parse(serializedState);
   } catch (error) {
-    console.error('Get state error: ', error.message);
+    // console.error('Get state error: ', error.message);
+    return [];
   }
 };

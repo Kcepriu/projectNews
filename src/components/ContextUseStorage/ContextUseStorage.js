@@ -8,7 +8,7 @@ const MyContext = createContext();
 const useContextStorage = () => useContext(MyContext);
 
 const ContextUseStorage = ({ children }) => {
-  const [favoriteNews, isFavorite, addToFavorite, deleteFromVavorite] =
+  const [favoriteNews, isFavorite, addToFavorite, deleteFromFavorite] =
     useArticlesStorage(NAME_STORAGE_FAVORITE);
 
   const [readNews, isRead, addToRead, deleteFromRead] =
@@ -20,7 +20,7 @@ const ContextUseStorage = ({ children }) => {
         favoriteNews,
         isFavorite,
         addToFavorite,
-        deleteFromVavorite,
+        deleteFromFavorite,
         readNews,
         isRead,
         addToRead,
