@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import SharedLayout from '../layout/SharedLayout/SharedLayout';
 import Page404 from 'pages/Page404';
-import Home from 'pages/Home';
-import Favorite from 'pages/Favorite';
-import Read from 'pages/Read';
+import Home from 'pages/Home/Home';
+import Favorite from 'pages/Favorite/Favorite';
+import Read from 'pages/Read/Read';
 import FilterLayout from '../layout/FilterLayout/FilterLayout';
 import { ContextUseStorage } from './ContextUseStorage/ContextUseStorage';
 

@@ -10,8 +10,9 @@ const useArticlesStorage = nameStorage => {
     return articlesStorage.find(element => element.id === article.id);
   }
 
-  function addArticle(article) {
-    if (isArticle(article)) return;
+  function addArticle(article, withChecking = true) {
+    if (withChecking && isArticle(article)) return;
+
     setArticlesStarage(prev => [...prev, article]);
   }
 

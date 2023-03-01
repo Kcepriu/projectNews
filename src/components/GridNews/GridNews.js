@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import { GridCards, ItemGrid } from './GridNews.styled';
 import CardNew from 'components/CardNew/CardNew';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
 const GridNews = ({ articles, otherCards = {} }) => {
-  const [newArticles, setNewArticles] = useState();
-
-  useEffect(() => {
+  const createItemsGrid = articles => {
     const changeArticles = articles.map((article, index) => {
       return (
         <ItemGrid key={article.id}>
@@ -14,28 +12,31 @@ const GridNews = ({ articles, otherCards = {} }) => {
         </ItemGrid>
       );
     });
-
     for (const key in otherCards) {
       changeArticles.splice(
         key - 1,
         0,
-        <ItemGrid key={key}>{otherCards[key]}</ItemGrid>
+        <ItemGrid key={otherCards[key].id}>{otherCards[key].content}</ItemGrid>
       );
     }
+    return changeArticles;
+  };
 
-    setNewArticles(changeArticles);
-  }, [articles, otherCards]);
+  const newArticles = createItemsGrid(articles);
+  console.log(Date.now());
 
   return (
     <GridCards>
-      {newArticles}
-      {/* {articles.map((article, index) => {
-        return (
-          <ItemGrid key={article.id}>
-            <CardNew article={article} />
-          </ItemGrid>
-        );
-      })} */}
+      {articles.length > 0 && newArticles}
+
+      {/* {articles.length > 0 &&
+        articles.map((article, index) => {
+          return (
+            <ItemGrid key={article.id}>
+              <CardNew article={article} />
+            </ItemGrid>
+          );
+        })} */}
     </GridCards>
   );
 };

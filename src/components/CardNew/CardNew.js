@@ -37,6 +37,11 @@ const CardNew = ({ article }) => {
     setArticleRead(prev => !prev);
   };
 
+  const handlerClickRead = () => {
+    const startDate = new Date();
+    addToRead({ ...article, dateRead: startDate.setHours(0, 0, 0, 0) });
+  };
+
   return (
     <Card>
       <WrapImg>
@@ -49,7 +54,7 @@ const CardNew = ({ article }) => {
         <Section>{section}</Section>
         <FooterCard>
           <DatePublication>{formatDate(published_date)}</DatePublication>
-          <Link target="_blank" to={url}>
+          <Link target="_blank" to={url} onClick={handlerClickRead}>
             Read more
           </Link>
         </FooterCard>
@@ -61,6 +66,7 @@ const CardNew = ({ article }) => {
             nameIcon={
               articleRead ? 'icon-remove_favorite' : 'icon-add_favorite'
             }
+            className="iconButtonFavorite"
           />
         </ButtonFavorite>
       </WrapContent>

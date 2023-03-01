@@ -11,8 +11,34 @@ const ContextUseStorage = ({ children }) => {
   const [favoriteNews, isFavorite, addToFavorite, deleteFromFavorite] =
     useArticlesStorage(NAME_STORAGE_FAVORITE);
 
-  const [readNews, isRead, addToRead, deleteFromRead] =
-    useArticlesStorage(NAME_STORAGE_READ);
+  const [readNews, _, addToReadStorage] = useArticlesStorage(NAME_STORAGE_READ);
+
+  const addToRead = article => {
+    const prevArticles = readNews.find(element => {
+      return element.id === article.id && element.dateRead === article.dateRead;
+    });
+
+    if (prevArticles) return;
+
+    addToReadStorage(article, false);
+  };
+
+  const getFavoritArticles = (page = 1) => {
+    return favoriteNews;
+  };
+
+  const getReadArticles = (page = 1) => {
+    const newReadNews = {};
+    readNews.map(element => {
+      if (newReadNews[element.dateRead]) {
+        newReadNews[element.dateRead].push(element);
+      } else {
+        newReadNews[element.dateRead] = [element];
+      }
+      return element;
+    });
+    return newReadNews;
+  };
 
   return (
     <MyContext.Provider
@@ -22,9 +48,9 @@ const ContextUseStorage = ({ children }) => {
         addToFavorite,
         deleteFromFavorite,
         readNews,
-        isRead,
         addToRead,
-        deleteFromRead,
+        getFavoritArticles,
+        getReadArticles,
       }}
     >
       {children}

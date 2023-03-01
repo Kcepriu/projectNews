@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import icons from '../../images/icons.svg';
 import { Icon } from './IconToButton.styled';
 
-const IconToButton = ({ nameIcon }) => {
+const IconToButton = ({ nameIcon, className }) => {
   return (
-    <Icon>
+    <Icon className={className}>
       <use href={`${icons}#${nameIcon}`}></use>
     </Icon>
   );
@@ -12,6 +12,7 @@ const IconToButton = ({ nameIcon }) => {
 
 IconToButton.propTypes = {
   nameIcon: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default IconToButton;
