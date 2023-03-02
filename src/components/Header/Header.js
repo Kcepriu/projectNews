@@ -1,7 +1,7 @@
 import Logo from 'components/Logo/Logo';
 import NavigationHeader from 'components/NavigationHeader/NavigationHeader';
-import SearchHeader from 'components/SearchHeader/SearchHeader';
-import SwitchTheme from 'components/SwitchTheme/SwitchTheme';
+// import SearchHeader from 'components/SearchHeader/SearchHeader';
+// import SwitchTheme from 'components/SwitchTheme/SwitchTheme';
 import { HeaderPage } from './Header.styled';
 
 const Header = () => {
@@ -9,8 +9,8 @@ const Header = () => {
     <HeaderPage>
       <Logo />
       <NavigationHeader />
-      <SearchHeader />
-      <SwitchTheme />
+      {/* <SearchHeader /> */}
+      {/* <SwitchTheme /> */}
     </HeaderPage>
   );
 };

@@ -6,7 +6,7 @@ import { ReactComponent as IconLocation } from '../../images/icon_location.svg';
 import {
   CardWeather,
   Img,
-  Button,
+  LinkWeather,
   TextDate,
   TextTemp,
   TitleCard,
@@ -18,6 +18,7 @@ import {
 const Weather = () => {
   const weather = useFetchWether();
   const nowDate = Date.now();
+
   return (
     <>
       {weather && (
@@ -35,18 +36,20 @@ const Weather = () => {
               </Location>
             </WrapWeatherLocation>
           </TitleCard>
-
           <Img
             src={getUrlIcon(weather.weather[0].icon)}
             alt="Icon weather"
             width="165"
           />
-
           <TextDate>
             {formatNameDay(nowDate)} <br /> {formatDateWeather(nowDate)}
           </TextDate>
-
-          <Button type="button">weather for week </Button>
+          <LinkWeather
+            target="_blank"
+            to={`https://openweathermap.org/city/${weather.id}`}
+          >
+            weather for week
+          </LinkWeather>
         </CardWeather>
       )}
     </>

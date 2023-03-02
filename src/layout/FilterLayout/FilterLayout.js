@@ -14,7 +14,7 @@ const FilterLayout = () => {
     <>
       <Filters>
         <Categories handlerClickCategory={handlerClickCategory} />
-        <p>Search date news</p>
+        {/* <p>Search date news</p> */}
       </Filters>
 
       <Suspense fallback={null}>

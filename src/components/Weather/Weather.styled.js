@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const CardWeather = styled.div`
@@ -24,6 +25,23 @@ export const Img = styled.img`
   margin-top: 90px;
   margin-left: auto;
   margin-right: auto;
+`;
+
+export const LinkWeather = styled(Link)`
+  display: inline-block;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  text-decoration: none;
+
+  margin-top: 28px;
+  padding: 9px 12px;
+  font-size: 20px;
+  line-height: 23px;
+  background: rgba(254, 254, 255, 0.3);
+  border-radius: 10px;
+  color: #ffffff;
 `;
 
 export const Button = styled.button`

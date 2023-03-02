@@ -23,8 +23,6 @@ const GridNews = ({ articles, otherCards = {} }) => {
   };
 
   const newArticles = createItemsGrid(articles);
-  console.log(Date.now());
-
   return (
     <GridCards>
       {articles.length > 0 && newArticles}
