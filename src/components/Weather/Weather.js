@@ -1,11 +1,11 @@
 import useFetchWether from 'hooks/useFetchWeather';
-import { getUrlIcon } from 'services/fetcWeather';
+// import { getUrlIcon } from 'services/fetcWeather';
 
 import { formatNameDay, formatDateWeather } from 'helpers/formatDate';
 import { ReactComponent as IconLocation } from '../../images/icon_location.svg';
 import {
   CardWeather,
-  Img,
+  // Img,
   Button,
   TextDate,
   TextTemp,
@@ -36,11 +36,11 @@ const Weather = () => {
             </WrapWeatherLocation>
           </TitleCard>
 
-          <Img
+          {/* <Img
             src={getUrlIcon(weather.weather[0].icon)}
             alt="Icon weather"
             width="165"
-          />
+          /> */}
 
           <TextDate>
             {formatNameDay(nowDate)} <br /> {formatDateWeather(nowDate)}

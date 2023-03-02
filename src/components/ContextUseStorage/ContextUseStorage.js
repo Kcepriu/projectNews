@@ -11,7 +11,7 @@ const ContextUseStorage = ({ children }) => {
   const [favoriteNews, isFavorite, addToFavorite, deleteFromFavorite] =
     useArticlesStorage(NAME_STORAGE_FAVORITE);
 
-  const [readNews, _, addToReadStorage] = useArticlesStorage(NAME_STORAGE_READ);
+  const [readNews, , addToReadStorage] = useArticlesStorage(NAME_STORAGE_READ);
 
   const addToRead = article => {
     const prevArticles = readNews.find(element => {
