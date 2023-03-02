@@ -42,34 +42,40 @@ const CardNew = ({ article }) => {
     addToRead({ ...article, dateRead: startDate.setHours(0, 0, 0, 0) });
   };
 
+  const newAbstract =
+    abstract.length > 150 ? abstract.slice(0, 150) + '...' : abstract;
+
   return (
     <Card>
       <WrapImg>
         <ImgNew imageInformation={images} alt={title} />
       </WrapImg>
+
       <WrapContent>
         <Title>{title}</Title>
-        <ContentNew>{abstract}</ContentNew>
+        <ContentNew>{newAbstract}</ContentNew>
 
-        <Section>{section}</Section>
         <FooterCard>
           <DatePublication>{formatDate(published_date)}</DatePublication>
           <Link target="_blank" to={url} onClick={handlerClickRead}>
             Read more
           </Link>
         </FooterCard>
-
-        <ButtonFavorite id="ChangeStatus" onClickButton={handlerClickFavorite}>
-          {articleRead ? 'Remove from favorite' : 'Add to favorite'}
-          {/* <IconAdd /> */}
-          <IconToButton
-            nameIcon={
-              articleRead ? 'icon-remove_favorite' : 'icon-add_favorite'
-            }
-            className="iconButtonFavorite"
-          />
-        </ButtonFavorite>
       </WrapContent>
+
+      <Section>{section}</Section>
+
+      <ButtonFavorite
+        id="ChangeStatus"
+        onClickButton={handlerClickFavorite}
+        className="Favorite"
+      >
+        {articleRead ? 'Remove from favorite' : 'Add to favorite'}
+        <IconToButton
+          nameIcon={articleRead ? 'icon-remove_favorite' : 'icon-add_favorite'}
+          className="iconButtonFavorite"
+        />
+      </ButtonFavorite>
     </Card>
   );
 };

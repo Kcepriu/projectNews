@@ -4,8 +4,8 @@ export const CardWeather = styled.div`
   padding: 40px 40px 40px 40px;
 
   background: #4440f7;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
 
   border-radius: 4px;
 

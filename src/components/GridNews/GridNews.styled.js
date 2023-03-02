@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const GridCards = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  row-gap: 32px;
-  column-gap: 40px;
+  row-gap: 40px;
+  column-gap: 31px;
   list-style: none;
   padding: 0;
   margin: 0;

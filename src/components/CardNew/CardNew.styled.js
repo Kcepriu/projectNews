@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Card = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   width: 100%;
   height: 100%;
 `;
@@ -22,8 +22,8 @@ export const WrapContent = styled.div`
   margin-top: 20px;
   flex-grow: 1;
 
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: calc(100% - 395px - 20px);
 
   /* outline: 1px solid green; */
 `;
@@ -56,7 +56,7 @@ export const Title = styled.h2`
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
-  line-height: 44px;
+  line-height: 36px;
   letter-spacing: -0.01em;
 
   color: #111321;
