@@ -1,46 +1,56 @@
-import { useEffect, useState } from 'react';
-import getMyLocation from '../../helpers/myLocation';
+import useFetchWether from 'hooks/useFetchWeather';
+import { getUrlIcon } from 'services/fetcWeather';
+
+import { formatNameDay, formatDateWeather } from 'helpers/formatDate';
+import { ReactComponent as IconLocation } from '../../images/icon_location.svg';
 import {
-  fetchWeatherForCity,
-  fetchWeatherForLocation,
-} from 'services/fetcWeather';
+  CardWeather,
+  Img,
+  Button,
+  TextDate,
+  TextTemp,
+  TitleCard,
+  WrapWeatherLocation,
+  Location,
+  TextWeather,
+} from './Weather.styled';
 
 const Weather = () => {
-  const [weather, setWeather] = useState();
+  const weather = useFetchWether();
+  const nowDate = Date.now();
+  return (
+    <>
+      {weather && (
+        <CardWeather>
+          <TitleCard>
+            <TextTemp>
+              {Math.round(weather.main.temp)}
+              <sup>°</sup>
+            </TextTemp>
+            <WrapWeatherLocation>
+              <TextWeather>{weather.weather[0].main}</TextWeather>
+              <Location>
+                <IconLocation width="27" />
+                <p>{weather.name}</p>
+              </Location>
+            </WrapWeatherLocation>
+          </TitleCard>
 
-  useEffect(() => {
-    const controller = new AbortController();
+          <Img
+            src={getUrlIcon(weather.weather[0].icon)}
+            alt="Icon weather"
+            width="165"
+          />
 
-    async function fetchWeather() {
-      const myLocation = getMyLocation();
-      console.log('myLocation', myLocation);
+          <TextDate>
+            {formatNameDay(nowDate)} <br /> {formatDateWeather(nowDate)}
+          </TextDate>
 
-      try {
-        if (myLocation) {
-          const myWeather = await fetchWeatherForLocation({
-            ...myLocation,
-            controller,
-          });
-          setWeather(myWeather);
-        } else {
-          const myWeather = await fetchWeatherForCity('Kyiv', controller);
-          setWeather(myWeather);
-        }
-      } catch {
-        console.log('Error fetch weather');
-      }
-    }
-
-    fetchWeather();
-
-    return () => {
-      controller.abort();
-    };
-  }, []);
-
-  console.log(weather);
-
-  return <p>Weather</p>;
+          <Button type="button">weather for week </Button>
+        </CardWeather>
+      )}
+    </>
+  );
 };
 
 export default Weather;
