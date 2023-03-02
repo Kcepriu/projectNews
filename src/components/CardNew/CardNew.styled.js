@@ -25,7 +25,7 @@ export const WrapContent = styled.div`
   max-width: 100%;
   max-height: 100%;
 
-  outline: 1px solid green;
+  /* outline: 1px solid green; */
 `;
 
 export const FooterCard = styled.div`

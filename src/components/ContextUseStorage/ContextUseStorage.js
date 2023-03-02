@@ -29,6 +29,7 @@ const ContextUseStorage = ({ children }) => {
 
   const getReadArticles = (page = 1) => {
     const newReadNews = {};
+
     readNews.map(element => {
       if (newReadNews[element.dateRead]) {
         newReadNews[element.dateRead].push(element);
@@ -37,6 +38,7 @@ const ContextUseStorage = ({ children }) => {
       }
       return element;
     });
+
     return newReadNews;
   };
 

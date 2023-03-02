@@ -9,15 +9,17 @@ const Read = () => {
 
   const articles = getReadArticles();
 
-  return Object.keys(articles).map(element => {
-    return (
-      <GridLayout>
-        <ReadNewsForDay dateNews={Number(element)}>
-          <GridNews articles={articles[element]} />;
-        </ReadNewsForDay>
-      </GridLayout>
-    );
-  });
+  return Object.keys(articles)
+    .sort((a, b) => b - a)
+    .map(element => {
+      return (
+        <GridLayout>
+          <ReadNewsForDay dateNews={Number(element)}>
+            <GridNews articles={articles[element]} />;
+          </ReadNewsForDay>
+        </GridLayout>
+      );
+    });
 };
 
 export default Read;
