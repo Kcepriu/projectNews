@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 // import FilterMenu from 'components/FilterMenu/FilterMenu';
 import FilterRow from 'components/FilterRow/FilterRow';
@@ -9,14 +9,25 @@ import ButtonCategorie from 'components/ButtonCategorie/ButtonCategorie';
 import IconToButton from 'components/IconToButton/IconToButton';
 import useFetchCategories from 'hooks/useFetchCategories';
 import Loader from 'components/Loader/Loader';
+import OtherCaterories from 'components/OtherCaterories/OtherCaterories';
 
 const Categories = ({ handlerClickCategory }) => {
+  const buttonRef = useRef(null);
   const [showOhterCategories, setShowOtherCategiries] = useState(false);
 
   const [isLoader, catagoriesRow, catagoriesMenu] = useFetchCategories();
 
+  const [positionOther, setPositionOther] = useState(null);
+
   const handlerClickOtherCategory = event => {
     setShowOtherCategiries(prev => !prev);
+
+    const position = buttonRef.current.getBoundingClientRect();
+    setPositionOther(position);
+  };
+
+  const handlerOnCloseModal = () => {
+    setShowOtherCategiries(false);
   };
 
   return (
@@ -32,7 +43,11 @@ const Categories = ({ handlerClickCategory }) => {
         )}
 
         {catagoriesMenu.length > 0 && (
-          <ButtonCategorie id="Other" onClickButton={handlerClickOtherCategory}>
+          <ButtonCategorie
+            ref={buttonRef}
+            id="Other"
+            onClickButton={handlerClickOtherCategory}
+          >
             Other
             <IconToButton
               nameIcon={showOhterCategories ? 'icon-up' : 'icon-down'}
@@ -40,7 +55,14 @@ const Categories = ({ handlerClickCategory }) => {
           </ButtonCategorie>
         )}
       </WrapCategories>
-      {/* {showOhterCategories && <FilterMenu catagories={catagoriesMenu} />} */}
+
+      {showOhterCategories && (
+        <OtherCaterories
+          catagories={catagoriesMenu}
+          position={positionOther}
+          handlerOnCloseModal={handlerOnCloseModal}
+        />
+      )}
     </>
   );
 };
