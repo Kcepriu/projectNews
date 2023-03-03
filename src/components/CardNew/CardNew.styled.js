@@ -71,6 +71,11 @@ export const ContentNew = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
+
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const DatePublication = styled.p`

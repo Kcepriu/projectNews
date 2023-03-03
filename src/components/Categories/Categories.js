@@ -9,13 +9,13 @@ import ButtonCategorie from 'components/ButtonCategorie/ButtonCategorie';
 import IconToButton from 'components/IconToButton/IconToButton';
 import useFetchCategories from 'hooks/useFetchCategories';
 import Loader from 'components/Loader/Loader';
-import OtherCaterories from 'components/OtherCaterories/OtherCaterories';
+import FilterMenu from 'components/FilterMenu/FilterMenu';
 
 const Categories = ({ handlerClickCategory }) => {
   const buttonRef = useRef(null);
   const [showOhterCategories, setShowOtherCategiries] = useState(false);
 
-  const [isLoader, catagoriesRow, catagoriesMenu] = useFetchCategories();
+  const [isLoader, categoriesRow, categoriesMenu] = useFetchCategories();
 
   const [positionOther, setPositionOther] = useState(null);
 
@@ -35,14 +35,14 @@ const Categories = ({ handlerClickCategory }) => {
       <WrapCategories>
         {isLoader && <Loader />}
 
-        {catagoriesRow.length > 0 && (
+        {categoriesRow.length > 0 && (
           <FilterRow
-            categories={catagoriesRow}
+            categories={categoriesRow}
             handlerClickCategory={handlerClickCategory}
           />
         )}
 
-        {catagoriesMenu.length > 0 && (
+        {categoriesMenu.length > 0 && (
           <ButtonCategorie
             ref={buttonRef}
             id="Other"
@@ -57,10 +57,11 @@ const Categories = ({ handlerClickCategory }) => {
       </WrapCategories>
 
       {showOhterCategories && (
-        <OtherCaterories
-          catagories={catagoriesMenu}
+        <FilterMenu
+          categories={categoriesMenu}
           position={positionOther}
           handlerOnCloseModal={handlerOnCloseModal}
+          handlerClickCategory={handlerClickCategory}
         />
       )}
     </>
